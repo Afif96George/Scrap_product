@@ -56,9 +56,20 @@ def findProduct():
         print({'Product Name':name,'Price':price})
 
 
-
 main()
-findProduct()
+# findProduct()
+try:
+    
+    xpathProduct = ['Product Name : ' + my_element.text for my_element in WebDriverWait(driver, 5).until(
+    EC.visibility_of_all_elements_located((By.XPATH, "//div[@class='_10Wbs- _5SSWfi UjjMrh']")))]
+    print(xpathProduct)
+    # print(span.text)
+
+except TypeError:
+        print('TypeError Exception Raised')
+
+else:
+        print("Title is found ... success")
 
 print("Next")
 driver.close()
