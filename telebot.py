@@ -21,7 +21,7 @@ driver = webdriver.Chrome(options=chrome_options)
 
 def main():
     # must add the keyword to search
-    driver.get(link + 'vitamin')
+    driver.get(link + 'keyboard')
 
     try:
         # to select the languagae
@@ -61,8 +61,10 @@ main()
 try:
     
     xpathProduct = ['Product Name : ' + my_element.text for my_element in WebDriverWait(driver, 5).until(
-    EC.visibility_of_all_elements_located((By.XPATH, "//div[@class='_10Wbs- _5SSWfi UjjMrh']")))]
-    print(xpathProduct)
+    EC.visibility_of_all_elements_located((By.XPATH, "//div[@class='_10Wbs- _5SSWfi UjjMrh']"),))]
+    xpathPrice = ['RM' + my_element.text for my_element in WebDriverWait(driver, 5).until(
+    EC.visibility_of_all_elements_located((By.XPATH, "//span[text()='RM']//following::span[1]")))]
+    print(xpathProduct, xpathPrice)
     # print(span.text)
 
 except TypeError:
