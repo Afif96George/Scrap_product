@@ -65,7 +65,6 @@ try:
     xpathPrice = ['RM' + my_element.text for my_element in WebDriverWait(driver, 5).until(
     EC.visibility_of_all_elements_located((By.XPATH, "//span[text()='RM']//following::span[1]")))]
     print(xpathProduct, xpathPrice)
-    # print(span.text)
 
 except TypeError:
         print('TypeError Exception Raised')
