@@ -46,9 +46,9 @@ def findPrice():
 def findProduct():
     page_source = driver.page_source
     product =  BeautifulSoup(page_source)
-    # print(product)
+    
     for item in product.select('div[data-sqe="item"]'):
-        # dataImg=item.img
+       
         name=item.find('div',class_="_10Wbs- _5SSWfi UjjMrh")
         price=item.find('div',class_="zp9xm9 xSxKlK _1heB4J")
         
