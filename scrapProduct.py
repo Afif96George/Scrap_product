@@ -46,31 +46,33 @@ def findPrice():
 def findProduct():
     page_source = driver.page_source
     product =  BeautifulSoup(page_source)
-    
+    # Find the product with price
     for item in product.select('div[data-sqe="item"]'):
        
-        name=item.find('div',class_="_10Wbs- _5SSWfi UjjMrh")
-        price=item.find('div',class_="zp9xm9 xSxKlK _1heB4J")
+        name=item.find('div',class_="_10Wbs- _5SSWfi UjjMrh").text
+        price=item.find('div',class_="zp9xm9 xSxKlK _1heB4J").text
+        print('Product Name :',name,'Price :',price)
         
+        
+
+def for_try():
+    try:
     
-        print({'Product Name':name,'Price':price})
+        xpathProduct = ['Product Name : ' + my_element.text for my_element in WebDriverWait(driver, 5).until(
+        EC.visibility_of_all_elements_located((By.XPATH, "//div[@class='_10Wbs- _5SSWfi UjjMrh']")))]
+        xpathPrice = ['RM' + my_element.text for my_element in WebDriverWait(driver, 5).until(
+        EC.visibility_of_all_elements_located((By.XPATH, "//span[text()='RM']//following::span[1]")))]
+        print(xpathProduct, xpathPrice)
 
-
-main()
-# findProduct()
-try:
-    
-    xpathProduct = ['Product Name : ' + my_element.text for my_element in WebDriverWait(driver, 5).until(
-    EC.visibility_of_all_elements_located((By.XPATH, "//div[@class='_10Wbs- _5SSWfi UjjMrh']")))]
-    xpathPrice = ['RM' + my_element.text for my_element in WebDriverWait(driver, 5).until(
-    EC.visibility_of_all_elements_located((By.XPATH, "//span[text()='RM']//following::span[1]")))]
-    print(xpathProduct, xpathPrice)
-
-except TypeError:
+    except TypeError:
         print('TypeError Exception Raised')
 
-else:
+    else:
         print("Title is found ... success")
+
+ 
+main()
+findProduct()
 
 print("Next")
 driver.close()
