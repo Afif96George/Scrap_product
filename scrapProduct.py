@@ -36,26 +36,7 @@ def main():
     else:
         print("Element Found ... success")
 
-   
-
-
-# def findProduct():
-#     page_source = driver.page_source
-#     # page_str =  1
-#     feature ="html.parser"
-#     product =  BeautifulSoup(page_source, feature)
-    
-
-#     # Find the product with price
-#     for item in product.select('div[data-sqe="item"]'):
-            
-#             name=item.find('div',class_="_10Wbs- _5SSWfi UjjMrh").text
-#             price=item.find('div',class_="zp9xm9 xSxKlK _1heB4J").text
-            
-#             print('Product Name :',name,'Price :',price)
-            
-            # return 
-           
+              
 def getEmProduct():
     try:
     
@@ -65,11 +46,11 @@ def getEmProduct():
         # get price
         xpathPrice = [ my_element.text for my_element in WebDriverWait(driver, 5).until(
         EC.visibility_of_all_elements_located((By.XPATH, "//div[@class='zp9xm9 xSxKlK _1heB4J']")))]
-        print(xpathProduct, xpathPrice)
+        # print(xpathProduct, xpathPrice)
 
         # store file in csv
-        df = pd.DataFrame.from_dict({"hai":xpathProduct})
-        df.insert(1,"test1",xpathPrice)
+        df = pd.DataFrame.from_dict({"product":xpathProduct})
+        df.insert(1,"price",xpathPrice)
 
         print(df)
         df.to_csv('file2.csv', index=False, header=False)
@@ -82,7 +63,6 @@ def getEmProduct():
         print("Title is found ... success")
 
 main()
-# findProduct()
 getEmProduct()
 print("Next")
 driver.close()
