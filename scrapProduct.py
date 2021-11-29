@@ -1,11 +1,12 @@
 
+from pandas.core.series import Series
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
-
+import pandas as pd
 
 chrome_options = Options()
 chrome_options.add_argument('--no-sandbox')
@@ -38,36 +39,50 @@ def main():
    
 
 
-def findProduct():
-    page_source = driver.page_source
-    page_str =  1
-    product =  BeautifulSoup(page_source)
-
-    # Find the product with price
-    for item in product.select('div[data-sqe="item"]'):
-            name=item.find('div',class_="_10Wbs- _5SSWfi UjjMrh").text
-            price=item.find('div',class_="zp9xm9 xSxKlK _1heB4J").text
-            print('Product Name :',name,'Price :',price)
-# def for_try():
-#     try:
+# def findProduct():
+#     page_source = driver.page_source
+#     # page_str =  1
+#     feature ="html.parser"
+#     product =  BeautifulSoup(page_source, feature)
     
-#         xpathProduct = ['Product Name : ' + my_element.text for my_element in WebDriverWait(driver, 5).until(
-#         EC.visibility_of_all_elements_located((By.XPATH, "//div[@class='_10Wbs- _5SSWfi UjjMrh']")))]
-#         xpathPrice = ['RM' + my_element.text for my_element in WebDriverWait(driver, 5).until(
-#         EC.visibility_of_all_elements_located((By.XPATH, "//span[text()='RM']//following::span[1]")))]
-#         print(xpathProduct, xpathPrice)
 
-#     except TypeError:
-#         print('TypeError Exception Raised')
+#     # Find the product with price
+#     for item in product.select('div[data-sqe="item"]'):
+            
+#             name=item.find('div',class_="_10Wbs- _5SSWfi UjjMrh").text
+#             price=item.find('div',class_="zp9xm9 xSxKlK _1heB4J").text
+            
+#             print('Product Name :',name,'Price :',price)
+            
+            # return 
+           
+def getEmProduct():
+    try:
+    
+        # get product
+        xpathProduct = [  my_element.text for my_element in WebDriverWait(driver, 5).until(
+        EC.visibility_of_all_elements_located((By.XPATH, "//div[@class='_10Wbs- _5SSWfi UjjMrh']")))]
+        # get price
+        xpathPrice = [ my_element.text for my_element in WebDriverWait(driver, 5).until(
+        EC.visibility_of_all_elements_located((By.XPATH, "//div[@class='zp9xm9 xSxKlK _1heB4J']")))]
+        print(xpathProduct, xpathPrice)
 
-#     else:
-#         print("Title is found ... success")
+        # store file in csv
+        df = pd.DataFrame.from_dict({"hai":xpathProduct})
+        df.insert(1,"test1",xpathPrice)
 
- 
+        print(df)
+        df.to_csv('file2.csv', index=False, header=False)
+
+
+    except TypeError:
+        print('TypeError Exception Raised')
+
+    else:
+        print("Title is found ... success")
+
 main()
-findProduct()
-
+# findProduct()
+getEmProduct()
 print("Next")
 driver.close()
-
-# print("Program Ended")
