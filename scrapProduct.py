@@ -8,17 +8,17 @@ from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 import pandas as pd
 
-chrome_options = Options()
-chrome_options.add_argument('--no-sandbox')
-chrome_options.add_argument('--disable-dev-shm-usage')
-# chrome_options.add_argument('--ignore-certificate-errors')
-# chrome_options.add_argument('--incognito')
-# chrome_options.add_argument('--headless')
+# chrome_options = Options()
+# chrome_options.add_argument('--no-sandbox')
+# chrome_options.add_argument('--disable-dev-shm-usage')
+# # chrome_options.add_argument('--ignore-certificate-errors')
+# # chrome_options.add_argument('--incognito')
+# # chrome_options.add_argument('--headless')
 # sites
 link = 'https://shopee.com.my/search?keyword='
-driver = webdriver.Chrome(options=chrome_options)
+driver = webdriver.Chrome(executable_path='chromedriver.exe')
 
-
+# remove
 
 def main():
     # must add the keyword to search
