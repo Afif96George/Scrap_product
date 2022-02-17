@@ -4,7 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 from bs4 import BeautifulSoup
 import pandas as pd
 
@@ -16,7 +16,8 @@ import pandas as pd
 # # chrome_options.add_argument('--headless')
 # sites
 link = 'https://shopee.com.my/search?keyword='
-driver = webdriver.Chrome(executable_path='chromedriver.exe')
+ser = Service('./chromedriver.exe')
+driver = webdriver.Chrome(service=ser)
 
 # remove
 
@@ -63,6 +64,6 @@ def getEmProduct():
         print("Title is found ... success")
 
 main()
-getEmProduct()
+# getEmProduct()
 print("Next")
 driver.close()
