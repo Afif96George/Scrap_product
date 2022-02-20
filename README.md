@@ -29,4 +29,5 @@ pip install csv
 ```
 Reference and guidelines 
 - [Wilson Wong part 1](https://medium.com/@zfwong.wilson/web-scraping-e-commerce-sites-to-compare-prices-with-python-part-1-360509ee5c62)
--[Wilson Wong part 2](https://medium.com/@zfwong.wilson/web-scraping-e-commerce-sites-to-compare-prices-with-python-part-2-367140620cb6)
+
+- [Wilson Wong part 2](https://medium.com/@zfwong.wilson/web-scraping-e-commerce-sites-to-compare-prices-with-python-part-2-367140620cb6)
