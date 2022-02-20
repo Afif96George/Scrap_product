@@ -1,4 +1,5 @@
 chromedriver.exe
 ./file2.csv
 ./Shopee MK470.csv
-./.vscode
+.vscode
+.pytest_cache
